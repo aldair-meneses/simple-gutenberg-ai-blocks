@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Simple Blocks AI Enhancer
  * Plugin URI:        github.com/aldair-meneses/gutenberg-ai-blocks
- * Description:       Sample plugins used in my studies about Gutenberg Blocks.
+ * Description:      Plugin to enchance the gutenberg blocks with AI
  * Version:           0.0.1
  * Author:            Aldrick
  * Text Domain:       simple-blocks-enhancer-ai
@@ -12,8 +12,8 @@
 
 namespace App\SimpleBlocksEnhancerAI;
 
-
 use App\SimpleBlocksEnhancerAI\Inc\WPOptions;
+use App\SimpleBlocksEnhancerAI\Pages\SettingsPage;
 
  if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,9 +21,10 @@ use App\SimpleBlocksEnhancerAI\Inc\WPOptions;
 
 class Init {
 
-	public WPOptions $options;
+	public $options;
 
 	public function __construct() {
+		$this->setup_constants();
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 	}
 
@@ -43,6 +44,8 @@ class Init {
 
 	public function init() {
 		$this->setup_constants();
+		$this->options = new WPOptions();
+		// todo: Ladd settings page;
 		// TODO: load options
 		// TODO: load blocks
 		// TODO: load rest api
